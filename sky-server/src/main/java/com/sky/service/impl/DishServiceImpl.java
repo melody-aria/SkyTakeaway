@@ -32,6 +32,7 @@ public class DishServiceImpl implements DishService {
     private DishMapper dishMapper;
     @Autowired
     private SetmealDishMapper setmealDishMapper;
+
     /*
      * 新增菜品，同时保存对应的口味数据
      */
@@ -82,7 +83,7 @@ public class DishServiceImpl implements DishService {
 
         //判断当前菜品是否能够删除--菜品是否被套餐关联
         List<Long> setmealIds = setmealDishMapper.getSetmealIdsByDishIds(ids);
-        if (setmealIds != null && setmealIds.size() > 0){
+        if (setmealIds != null && setmealIds.size() > 0) {
             //当前菜品被套餐关联了不能删除
             throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
         }
